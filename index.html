@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="canonical" href="https://dreamforyou.fr/">
+<meta name="theme-color" content="#13211A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dream For You">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://dreamforyou.fr/">
+<meta property="og:title" content="Dream For You Colmar">
+<meta property="og:description" content="Dream For You : quad, hélicoptère, cheval, spa, vélo électrique et dégustations au cœur de l'Alsace, depuis Colmar.">
+<meta property="og:image" content="https://dreamforyou.fr/media/chateau-poster-v2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="media/favicon-192.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Dream For You","url":"https://dreamforyou.fr/","description":"Dream For You : quad, hélicoptère, cheval, spa, vélo électrique et dégustations au cœur de l'Alsace, depuis Colmar.","image":"https://dreamforyou.fr/media/chateau-poster-v2.jpg","logo":"https://dreamforyou.fr/media/favicon-192.png","telephone":"+33769058671","email":"dreamforyoucolmar@gmail.com","address":{"@type":"PostalAddress","streetAddress":"191 route d'Ingersheim","postalCode":"68000","addressLocality":"Colmar","addressCountry":"FR"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"19:00"}],"sameAs":["https://www.instagram.com/dreamforyou.colmar/","https://www.snapchat.com/@dreamforyou68"]}</script>
+<title>Dream For You Colmar</title>
+<meta name="description" content="Dream For You : quad, hélicoptère, cheval, spa, vélo électrique et dégustations au cœur de l'Alsace, depuis Colmar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;700&family=Titillium+Web:wght@400;600;700&display=swap">
+<style>
+/* Concept : « la bulle de rêve ». Les formes organiques du site actuel deviennent une bulle de verre vivante (WebGL)
+   qui porte chaque expérience. Pages « jour » blanches pour lire, scènes « nuit » vert forêt pour plonger,
+   rouge du logo en accent rare, étiquettes techniques en Titillium comme un carnet de route. */
+:root{
+  --paper:#FFFFFF;      /* fond jour (site actuel) */
+  --mist:#EEF1EC;       /* blanc teinté vert, bandes secondaires */
+  --ink:#0D141A;        /* texte (menu du site actuel) */
+  --muted:#56585E;      /* texte secondaire (site actuel) */
+  --forest:#233A2C;     /* vert du pied de page actuel */
+  --night:#13211A;      /* vert nuit des scènes immersives */
+  --red:#D42A30;        /* rouge du logo */
+  --red-hi:#E8434A;
+  --on-night:#F3F5F1;
+  --on-night-2:rgba(243,245,241,.66);
+  --line:rgba(13,20,26,.12);
+  --line-night:rgba(243,245,241,.16);
+  --f-display:'Outfit', 'Avenir Next', system-ui, sans-serif;
+  --f-body:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-label:'Titillium Web', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --nav-h:64px;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-io:cubic-bezier(.65,0,.35,1);
+  --gut-l:max(16px, env(safe-area-inset-left, 0px));
+  --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--paper);color:var(--ink);font:400 1rem/1.62 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
+img,video,canvas{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1320px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- typographie ---------- */
+.lbl{font:700 .72rem/1.2 var(--f-label);letter-spacing:.16em;text-transform:uppercase;margin:0}
+.lbl-soft{opacity:.62}
+.h-xl{font:600 clamp(2.4rem,6.2vw,5.6rem)/.98 var(--f-display);letter-spacing:-.025em;margin:0;text-wrap:balance}
+.h-l{font:600 clamp(2rem,4.4vw,3.6rem)/1.02 var(--f-display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.h-m{font:600 clamp(1.6rem,2.8vw,2.4rem)/1.08 var(--f-display);letter-spacing:-.015em;margin:0;text-wrap:balance}
+.lead{font:400 clamp(1.08rem,1.5vw,1.3rem)/1.55 var(--f-body);max-width:58ch;margin:0}
+.muted{color:var(--muted)}
+.night .muted{color:var(--on-night-2)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- boutons (pilules du site actuel) ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:.95em 1.5em;border-radius:999px;border:1.5px solid transparent;font:600 .95rem/1 var(--f-body);text-decoration:none;cursor:pointer;transition:transform .5s var(--ease-out),background-color .3s,color .3s,border-color .3s;will-change:transform;white-space:nowrap}
+.btn svg{width:1.05em;height:1.05em;flex:none}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-hi)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#26323b}
+.btn-ghost{border-color:currentColor;background:transparent}
+.night .btn-ghost{color:var(--on-night)}
+.btn-ghost:hover{background:rgba(127,127,127,.12)}
+.btn-sm{padding:.7em 1.1em;font-size:.86rem}
+
+/* ---------- préchargeur ---------- */
+#pre{position:fixed;inset:0;z-index:100;background:var(--night);color:var(--on-night);display:grid;place-items:center;
+  clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--ease-io)}
+#pre.out{clip-path:inset(0 0 100% 0)}
+#pre.gone{display:none}
+.pre-in{display:grid;justify-items:center;gap:22px;padding-inline:24px}
+.pre-logo{width:min(440px,72vw);height:auto;clip-path:inset(0 100% 0 0);animation:preLogo 1.5s .15s var(--ease-out) forwards}
+@keyframes preLogo{to{clip-path:inset(0 0 0 0)}}
+.pre-count{font:300 clamp(3rem,9vw,6rem)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.pre-bar{width:min(320px,60vw);height:1px;background:var(--line-night);position:relative;overflow:hidden}
+.pre-bar i{position:absolute;inset:0;background:var(--on-night);transform-origin:left;transform:scaleX(0)}
+.pre-meta{position:absolute;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;padding-left:var(--gut-l);padding-right:var(--gut-r);gap:12px}
+.pre-skip{background:none;border:0;padding:6px 0;cursor:pointer;color:var(--on-night-2)}
+
+/* ---------- navigation ---------- */
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;height:var(--nav-h);display:flex;align-items:center;
+  padding-left:var(--gut-l);padding-right:var(--gut-r);gap:18px;transition:background-color .45s,color .45s,box-shadow .45s;color:var(--on-night)}
+html[data-nav="day"] .nav{color:var(--ink);background:rgba(255,255,255,.97);box-shadow:0 1px 0 var(--line)}
+html[data-nav="night"] .nav.scrolled{background:rgba(19,33,26,.94);box-shadow:0 1px 0 var(--line-night)}
+.nav-logo{display:block;position:relative;width:132px;height:47px;flex:none}
+.nav-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .45s}
+.nav-logo .on-day{opacity:0}
+html[data-nav="day"] .nav-logo .on-day{opacity:1}
+html[data-nav="day"] .nav-logo .on-night{opacity:0}
+.nav-links{display:flex;gap:26px;margin-inline:auto}
+.nav-links a{font:700 .78rem/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:8px 0;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease-out)}
+.nav-links a:hover::after,.nav-links a[aria-current="true"]::after{transform:scaleX(1);transform-origin:left}
+.nav-tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+.nav-links + .nav-tools{margin-left:0}
+.langs{display:flex;gap:2px;border:1px solid currentColor;border-radius:999px;padding:3px;opacity:.9}
+.langs button{border:0;background:none;padding:5px 8px;border-radius:999px;cursor:pointer;font:700 .68rem/1 var(--f-label);letter-spacing:.1em}
+.langs button[aria-pressed="true"]{background:currentColor}
+.langs button[aria-pressed="true"] span{color:var(--night)}
+html[data-nav="day"] .langs button[aria-pressed="true"] span{color:#fff}
+.pause{border:1px solid currentColor;background:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;opacity:.85}
+.pause svg{width:12px;height:12px}
+.pause .i-play{display:none}
+html.is-paused .pause .i-play{display:block}
+html.is-paused .pause .i-pause{display:none}
+.burger{display:none;border:1px solid currentColor;background:none;height:38px;padding:0 14px;border-radius:999px;cursor:pointer;font:700 .72rem/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase}
+.sheet{position:fixed;inset:0;z-index:45;background:var(--night);color:var(--on-night);display:flex;flex-direction:column;
+  padding:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 18px) var(--gut-r) calc(24px + env(safe-area-inset-bottom,0px)) var(--gut-l);
+  clip-path:circle(0% at calc(100% - 40px) 32px);transition:clip-path .8s var(--ease-io);visibility:hidden}
+.sheet.open{clip-path:circle(150% at calc(100% - 40px) 32px);visibility:visible}
+.sheet nav{display:grid;gap:4px}
+.sheet nav a{font:600 clamp(2.2rem,11vw,3.4rem)/1.12 var(--f-display);text-decoration:none;letter-spacing:-.02em}
+.sheet nav a span{font:700 .7rem/1 var(--f-label);letter-spacing:.16em;color:var(--red-hi);vertical-align:super;margin-right:10px}
+.sheet-foot{margin-top:auto;display:grid;gap:16px}
+.sheet .langs{justify-self:start}
+@media (max-width:980px){
+  .nav-links{display:none}
+  .burger{display:inline-flex;align-items:center}
+  .nav .langs,.nav .pause{display:none}
+  .nav-logo{width:112px;height:40px}
+  .nav-links + .nav-tools{margin-left:auto}
+}
+@media (max-width:420px){.nav .btn-red{padding:.72em 1em;font-size:.84rem}}
+
+/* ---------- scènes ---------- */
+.night{background:var(--night);color:var(--on-night)}
+.forest{background:var(--forest);color:var(--on-night)}
+.day{background:var(--paper);color:var(--ink)}
+.mist{background:var(--mist);color:var(--ink)}
+section{position:relative}
+.sec-pad{padding-block:clamp(88px,12vw,168px)}
+.kicker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.lift{margin-top:-44px;border-radius:44px 44px 0 0;z-index:1}
+@media (max-width:700px){.lift{margin-top:-28px;border-radius:28px 28px 0 0}}
+.kicker::before{content:"";width:28px;height:1.5px;background:var(--red)}
+
+/* stage WebGL partagé : la toile est déplacée d'une scène à l'autre */
+.stage{position:relative}
+.stage-gl{position:absolute;inset:0}
+.stage-gl canvas{width:100%;height:100%;display:block}
+.stage-fb{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.stage-fb .blob{width:min(78%,78vh);aspect-ratio:1;overflow:hidden;border-radius:58% 42% 51% 49%/46% 55% 45% 54%;animation:blob 14s ease-in-out infinite alternate;box-shadow:0 0 0 1px rgba(255,255,255,.22) inset}
+.stage-fb .blob img,.stage-fb .blob video{width:100%;height:100%;object-fit:cover;transition:opacity .9s}
+html.gl .stage-fb{opacity:.001}
+@keyframes blob{
+  0%{border-radius:58% 42% 51% 49%/46% 55% 45% 54%}
+  33%{border-radius:44% 56% 62% 38%/57% 43% 57% 43%}
+  66%{border-radius:52% 48% 39% 61%/42% 61% 39% 58%}
+  100%{border-radius:61% 39% 47% 53%/53% 40% 60% 47%}}
+html.is-paused *,html.is-paused *::before,html.is-paused *::after{animation-play-state:paused!important}
+
+/* ---------- 01 · héros v2 : le vol ----------
+   Le film est épinglé (sticky) pendant que le texte défile au doigt par-dessus. Toute la durée du vol tient dans la
+   hauteur de #hero : d'abord le film, puis l'écran se referme en bulle, puis le hero se détache comme en v1.
+   Les repères (P_FILM, P_SHUT, P_LAND) sont dans src/flight.v3c.js. */
+.hero{--fl-len:7.4;--fl-zoom:0;height:calc(100svh * var(--fl-len));min-height:calc(600px * var(--fl-len));overflow:clip;--fl-dawn:1;--fl-open:1}
+.fl-pin{position:sticky;top:0;height:100svh;min-height:600px;overflow:hidden;background:var(--night)}
+.fl-pin .stage{position:absolute;inset:0;z-index:0}
+.fl-pin::after{content:"";position:absolute;inset:auto 0 0;height:42%;z-index:1;background:linear-gradient(to top,rgba(19,33,26,.92),rgba(19,33,26,0));pointer-events:none}
+#flFilm{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;background:var(--night);transform:scale(1.09);scale:calc(1 + var(--fl-zoom));transition:opacity .28s linear,transform 2.8s var(--ease-out)}
+html.ready #flFilm{transform:none}
+.hero.fl-handed #flFilm{opacity:0}
+/* voile : bandeau sombre sous le menu, pied sombre sous les légendes, et l'aube qui se lève au premier défilement */
+.fl-veil{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:var(--fl-open);
+  background:linear-gradient(to bottom,rgba(11,21,16,.5),rgba(11,21,16,0) 20%),linear-gradient(to top,rgba(11,21,16,.74),rgba(11,21,16,0) 44%)}
+.fl-veil::after{content:"";position:absolute;inset:0;background:rgba(11,21,16,.2);opacity:var(--fl-dawn)}
+.fl-hud,.fl-route,.fl-intro,.fl-cap .wrap{max-width:none}
+.fl-hud{position:absolute;inset:0 0 auto;z-index:4;display:flex;justify-content:space-between;align-items:start;gap:6px 24px;flex-wrap:wrap;
+  padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 20px);pointer-events:none}
+.fl-route{position:absolute;inset:auto 0 0;z-index:4;display:flex;align-items:center;gap:14px;
+  padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.fl-route .fl-line{flex:1;height:1.5px;background:var(--line-night);position:relative;min-width:40px}
+.fl-route .fl-line i{position:absolute;inset:0;background:var(--on-night);transform-origin:left;transform:scaleX(0)}
+.fl-route .fl-line::after{content:"";position:absolute;right:-3px;top:-3px;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--on-night)}
+.fl-skip{pointer-events:auto;border:1px solid var(--line-night);background:rgba(11,21,16,.62);color:var(--on-night);border-radius:999px;padding:.7em 1.1em;cursor:pointer;
+  font:700 .68rem/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase;transition:background-color .3s}
+.fl-skip:hover{background:rgba(243,245,241,.16)}
+.hero.landed .fl-skip{pointer-events:none}
+.fl-hud .fade,.fl-route,.fl-intro .fade{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+html.ready .fl-hud .fade,html.ready .fl-route,html.ready .fl-intro .fade{opacity:1;transform:none}
+html.ready .hero.landed .fl-route{opacity:0;transition-duration:.4s}
+html.ready .fl-intro .fade.d2{transition-delay:.55s}
+html.ready .fl-intro .fade.d3{transition-delay:.75s}
+
+/* piste : tout ce qui défile au doigt par-dessus le film */
+.fl-track{position:absolute;inset:0;z-index:5;pointer-events:none}
+.fl-intro{position:absolute;inset:0 0 auto;height:100svh;min-height:600px;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto auto;
+  padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 58px);padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+.fl-word{font:600 clamp(4.2rem,15.2vw,15rem)/.84 var(--f-display);letter-spacing:-.045em;margin:0;text-shadow:0 2px 60px rgba(8,16,11,.5),0 1px 3px rgba(8,16,11,.18);white-space:nowrap}
+.fl-w1{grid-row:1;justify-self:start;margin-left:-.04em}
+.fl-w2{grid-row:3;justify-self:end;white-space:normal;width:min-content;text-align:right}
+.wd{display:inline-block;white-space:nowrap}
+.fl-word .ch,.hero-title .ch{display:inline-block;transform:translateY(105%);opacity:0;transition:transform 1.2s var(--ease-out),opacity 1.2s var(--ease-out)}
+html.ready .fl-word .ch{transform:none;opacity:1}
+.fl-intro-row{grid-row:4;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:18px 28px;margin-top:26px}
+.fl-intro-row .hero-sub{text-shadow:0 1px 18px rgba(8,16,11,.6)}
+.fl-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;pointer-events:auto}
+.btn-light{background:var(--on-night);color:var(--night)}
+.btn-light:hover{background:#fff}
+.btn-light svg{width:.8em;height:.8em}
+.hero.fl-auto .btn-light .i-go,.hero:not(.fl-auto) .btn-light .i-stop{display:none}
+.fl-cap{position:absolute;left:0;right:0;top:calc(var(--at) * (100% - 100svh) + 58svh)}
+.fl-cap .wrap{display:grid;gap:14px}
+.fl-cap-k{display:flex;align-items:center;gap:12px;text-shadow:0 1px 14px rgba(8,16,11,.7)}
+.fl-cap-k::before{content:"";width:28px;height:1.5px;background:var(--red-hi)}
+.fl-cap-t{font:500 clamp(1.9rem,4.1vw,3.9rem)/1.04 var(--f-display);letter-spacing:-.025em;margin:0;max-width:15ch;text-wrap:balance;text-shadow:0 2px 34px rgba(8,16,11,.6)}
+.fl-cap.r .wrap{justify-items:end;text-align:right}
+.fl-cap.r .fl-cap-k{flex-direction:row-reverse}
+@supports (animation-timeline:view()){
+  .fl-cap{animation:flCap linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+}
+html.is-paused .fl-cap{animation-play-state:running!important}
+@keyframes flCap{0%{opacity:0}16%{opacity:1}60%{opacity:1}84%,100%{opacity:0}}
+
+/* arrivée : le hero de la v1, révélé quand l'écran s'est refermé en bulle (.landed posé par flight.v2.js) */
+.hero-ui{position:absolute;inset:0;max-width:none;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto auto;z-index:4;
+  padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 20px);padding-bottom:calc(70px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.hero.landed .hero-ui > *{pointer-events:auto}
+.hero-main{grid-column:1 / -1;grid-row:2;display:grid;gap:18px;align-content:end}
+.hero-title{font:600 clamp(4.2rem,17vw,15.5rem)/.82 var(--f-display);letter-spacing:-.045em;margin:0 0 0 -.04em;
+  text-shadow:0 2px 40px rgba(10,20,14,.35)}
+.hero.landed .hero-title .ch{transform:none;opacity:1}
+.hero:not(.landed) .hero-title .ch{transition-duration:.4s;transition-delay:0s!important}
+.hero-row{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:18px 28px}
+.hero-sub{max-width:34ch;font:400 clamp(1rem,1.4vw,1.2rem)/1.5 var(--f-body);color:var(--on-night);margin:0}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero-foot{grid-column:1 / -1;grid-row:3;display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line-night)}
+.hero-ui .fade{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.hero.landed .hero-ui .fade{opacity:1;transform:none}
+.hero.landed .hero-ui .fade.d2{transition-delay:.25s}
+.hero.landed .hero-ui .fade.d3{transition-delay:.45s}
+.scroll-cue{display:inline-flex;gap:8px;align-items:center}
+.scroll-cue i{width:1px;height:22px;background:currentColor;transform-origin:top;animation:cue 1.8s var(--ease-io) infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:700px){
+  .hero-ui{grid-template-columns:1fr;padding-bottom:calc(50px + env(safe-area-inset-bottom,0px))}
+  .hero-foot .hide-s{display:none}
+  .fl-hud{flex-direction:column}
+  .fl-intro{grid-template-rows:1fr auto auto auto;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .fl-w1{grid-row:2}
+  .fl-w2{grid-row:3;justify-self:start;margin-left:-.04em;white-space:nowrap;width:auto;text-align:left}
+  .fl-intro-row{margin-top:16px}
+  .fl-route{gap:10px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .fl-route .lbl{font-size:.62rem;letter-spacing:.12em}
+  .fl-skip{position:absolute;right:var(--gut-r);bottom:calc(46px + env(safe-area-inset-bottom,0px))}
+  .fl-cap{top:calc(var(--at) * (100% - 100svh) + 60svh)}
+  .fl-cap.r .wrap{justify-items:start;text-align:left}
+  .fl-cap.r .fl-cap-k{flex-direction:row}
+}
+html:not(.js) .hero{height:100svh;min-height:600px}
+html:not(.js) #flFilm,html:not(.js) .fl-veil,html:not(.js) .fl-track,html:not(.js) .fl-route{display:none}
+html:not(.js) .hero-ui .fade,html:not(.js) .hero-title .ch,html:not(.js) .fl-hud .fade{opacity:1;transform:none}
+
+/* ---------- 02 · manifeste ---------- */
+.manif{display:grid;grid-template-columns:minmax(0,1fr);gap:48px}
+.manif-text{font:500 clamp(1.7rem,4vw,3.5rem)/1.16 var(--f-display);letter-spacing:-.02em;margin:0;max-width:24ch;text-wrap:pretty}
+.manif-text .w{display:inline}
+.manif-sub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 48px;align-items:start}
+.manif-sub p{margin:0;max-width:52ch}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);margin-top:8px}
+.stat{padding:22px 18px 0 0;display:grid;gap:8px;border-right:1px solid var(--line);padding-left:18px}
+.stat:first-child{padding-left:0}
+.stat:last-child{border-right:0}
+.stat b{font:600 clamp(2.2rem,4.6vw,3.8rem)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat b em{font-style:normal;color:var(--red)}
+@media (max-width:820px){
+  .manif-sub{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(3){padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line);margin-top:22px}
+}
+@supports (animation-timeline:view()){
+  .manif-text .w{animation:wordIn linear both;animation-timeline:view();animation-range:entry 30% cover 42%}
+  @keyframes wordIn{from{opacity:.14}to{opacity:1}}
+  .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  @keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- 03 · expériences ---------- */
+.exp-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px 64px;align-items:end;padding-bottom:clamp(40px,6vw,80px)}
+.exp-grid{position:relative}
+/* v3d : le film des expériences (src/scenes.v3e.js) occupe tout l'écran, épinglé ; les fiches défilent par-dessus, à droite.
+   Une fiche = un plan du film ; coupe franche d'une fiche à l'autre. Voile en dégradé plein (pas de flou) pour lire. */
+.exp-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--night) url(media/scenes-v3d/a-e1.jpg) center/cover;z-index:0}
+.exp-stage .stage{position:absolute;inset:0}
+#expFilm{position:absolute;inset:0;width:100%;height:100%;display:block}
+.exp-stage .exp-veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to left,rgba(11,21,16,.9),rgba(11,21,16,.7) 36%,rgba(11,21,16,0) 62%),linear-gradient(to top,rgba(11,21,16,.66),rgba(11,21,16,0) 26%),linear-gradient(to bottom,rgba(11,21,16,.45),rgba(11,21,16,0) 18%)}
+.exp-list{position:relative;z-index:1;margin:-100svh 0 0 auto;width:min(44%,620px)}
+.exp-item{min-height:135svh}
+.exp-hud{position:absolute;left:var(--gut-l);right:24px;bottom:calc(28px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:end;gap:16px;z-index:2;pointer-events:none}
+.exp-dots{display:flex;gap:6px}
+.exp-dots i{width:22px;height:2px;background:var(--line-night);transition:background-color .4s,width .5s var(--ease-out)}
+.exp-dots i.on{background:var(--red-hi);width:40px}
+.exp-list{padding-right:var(--gut-r);padding-left:clamp(16px,3vw,48px)}
+.exp-item{display:grid;align-content:center;gap:22px;padding-block:calc(var(--nav-h) + 40px) 60px;border-top:1px solid var(--line-night)}
+.exp-item:first-child{border-top:0}
+.exp-item .exp-meta,.exp-item h3,.exp-item p.txt{text-shadow:0 1px 14px rgba(8,16,11,.55)}
+.exp-item h3{font:600 clamp(2.1rem,4.2vw,3.7rem)/1 var(--f-display);letter-spacing:-.025em;margin:0;text-wrap:balance}
+.exp-item p.txt{margin:0;max-width:48ch;color:var(--on-night-2)}
+.exp-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.exp-idx{color:var(--red-hi)}
+.offers{margin:0;display:grid;border-top:1px solid var(--line-night);max-width:520px}
+.offers div{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:13px 0;border-bottom:1px solid var(--line-night)}
+.offers dt{font:400 .95rem/1.35 var(--f-body);color:var(--on-night)}
+.offers dd{margin:0;font:600 1.15rem/1 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.offer-note{font-size:.84rem;color:var(--on-night-2);margin:0}
+.exp-item .btn{justify-self:start}
+.exp-img-m{display:none}
+@media (max-width:900px){
+  .exp-head{grid-template-columns:1fr}
+  .exp-stage{top:calc(var(--nav-h) + env(safe-area-inset-top,0px));height:min(52svh,440px);z-index:3}
+  .exp-stage .exp-veil{background:linear-gradient(to top,rgba(11,21,16,.6),rgba(11,21,16,0) 34%)}
+  .exp-list{margin:0;width:auto}
+  .exp-stage::after{content:"";position:absolute;left:0;right:0;bottom:-34px;height:34px;background:linear-gradient(var(--night),rgba(19,33,26,0));pointer-events:none}
+  .exp-hud{bottom:12px;left:var(--gut-l);right:var(--gut-r)}
+  .exp-list{padding-left:var(--gut-l)}
+  .exp-item{min-height:90svh;align-content:start;padding-block:56px 64px}
+  .exp-item:first-child{padding-top:44px}
+}
+
+/* ---------- 04 · déroulé ---------- */
+.steps{list-style:none;margin:clamp(40px,6vw,72px) 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:19px;height:1.5px;background:var(--line)}
+.steps li{position:relative;padding:0 18px 0 0;display:grid;gap:14px;align-content:start}
+.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);width:40px;height:40px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:grid;place-items:center;font:700 .78rem/1 var(--f-label);letter-spacing:.06em;position:relative;z-index:1}
+.steps li:nth-child(5)::before{background:var(--red);border-color:var(--red);color:#fff}
+.steps h3{font:600 1.12rem/1.25 var(--f-display);margin:0;letter-spacing:-.005em}
+.steps p{margin:0;font-size:.92rem;color:var(--muted)}
+@supports (animation-timeline:view()){
+  .steps::after{content:"";position:absolute;left:0;right:0;top:19px;height:1.5px;background:var(--ink);transform-origin:left;animation:draw linear both;animation-timeline:view();animation-range:entry 60% cover 55%}
+  @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+@media (max-width:980px){
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps::before,.steps::after{left:19px;right:auto;top:0;bottom:0;width:1.5px;height:auto}
+  .steps::after{transform-origin:top;animation-name:drawY!important}
+  @keyframes drawY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .steps li{grid-template-columns:40px minmax(0,1fr);column-gap:18px;padding:0}
+  .steps li::before{grid-row:1 / span 2}
+}
+.pledges{margin-top:clamp(72px,9vw,120px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:32px 64px}
+.pledge-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pledge-list li{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);font:500 clamp(1.1rem,1.8vw,1.45rem)/1.3 var(--f-display)}
+.pledge-list li .lbl{color:var(--red);min-width:2.4em}
+@media (max-width:820px){.pledges{grid-template-columns:1fr}}
+
+/* ---------- 05 · avis ---------- */
+.rev-top{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.rating{display:flex;align-items:center;gap:16px}
+.rating b{font:600 clamp(3rem,6vw,4.6rem)/1 var(--f-display);letter-spacing:-.03em}
+.stars{color:var(--red);letter-spacing:.12em;font-size:1.1rem}
+.rev-row{margin-top:40px;display:grid;grid-auto-flow:column;grid-auto-columns:min(420px,84vw);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;
+  scrollbar-width:thin;scrollbar-color:var(--forest) transparent;overscroll-behavior-x:contain}
+.rev{margin:0;scroll-snap-align:start;border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;gap:18px;align-content:space-between;background:var(--paper)}
+.rev q{quotes:none;font:400 1.04rem/1.6 var(--f-body);display:block}
+.rev.long q{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rev.long.open q{display:block}
+.rev-who{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rev-who strong{font:600 1rem/1.2 var(--f-display)}
+.more{border:0;background:none;padding:0;font:600 .86rem/1 var(--f-body);text-decoration:underline;text-underline-offset:3px;cursor:pointer;justify-self:start}
+.rev-nav{display:flex;gap:8px}
+.rnd{width:46px;height:46px;border-radius:50%;border:1.5px solid currentColor;background:none;display:grid;place-items:center;cursor:pointer}
+.rnd svg{width:16px;height:16px}
+
+/* ---------- 06 · galerie ---------- */
+.gal{margin-top:44px;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(240px,30vw,420px);gap:clamp(14px,2vw,28px);overflow-x:auto;scroll-snap-type:x proximity;
+  padding:10px var(--gut-r) 26px var(--gut-l);scrollbar-width:none;overscroll-behavior-x:contain}
+.gal::-webkit-scrollbar{display:none}
+.gal figure{margin:0;scroll-snap-align:center;display:grid;gap:14px}
+.gal .shape{aspect-ratio:4/5;overflow:hidden;border-radius:64% 36% 55% 45%/49% 62% 38% 51%;animation:blob2 16s ease-in-out infinite alternate;transform:translateZ(0)}
+@keyframes blob2{0%{border-radius:64% 36% 55% 45%/49% 62% 38% 51%}50%{border-radius:38% 62% 40% 60%/61% 39% 61% 39%}100%{border-radius:55% 45% 68% 32%/42% 55% 45% 58%}}
+.gal figure:nth-child(2n) .shape{animation-duration:19s;animation-direction:alternate-reverse}
+.gal figure:nth-child(3n) .shape{animation-duration:13s}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease-out)}
+.gal figure:hover img{transform:scale(1.06)}
+.gal figcaption{display:flex;justify-content:space-between;gap:12px}
+.gal-hint{display:flex;align-items:center;gap:10px}
+
+/* ---------- 07 · réservation (finale) ---------- */
+.book{min-height:100svh;display:grid;overflow:hidden}
+.book .stage{position:absolute;inset:0}
+.book::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(19,33,26,0) 30%,rgba(19,33,26,.78) 78%);z-index:1;pointer-events:none}
+.book-in{position:relative;z-index:2;display:grid;align-content:center;justify-items:center;text-align:center;gap:26px;padding-block:calc(var(--nav-h) + 60px) 80px}
+.book-in .h-xl{max-width:14ch;text-shadow:0 2px 40px rgba(10,20,14,.55)}
+.book-in .lead{color:var(--on-night);text-shadow:0 1px 20px rgba(10,20,14,.6)}
+.book-steps{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.book-steps li{font:600 .82rem/1 var(--f-body);padding:.7em 1em;border-radius:999px;background:rgba(19,33,26,.82);border:1px solid var(--line-night)}
+.book-steps li b{color:var(--red-hi);margin-right:6px;font:700 .72rem/1 var(--f-label)}
+.book-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.book-cta .btn-red{font-size:1.05rem;padding:1.1em 1.9em}
+.book-note{font-size:.88rem;color:var(--on-night-2);margin:0}
+
+/* ---------- 08 · infos ---------- */
+.info-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:center}
+.card-list{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.row .v{font:500 1.08rem/1.35 var(--f-display);user-select:all;-webkit-user-select:all;overflow-wrap:anywhere}
+.copy{border:1px solid var(--line);background:none;border-radius:999px;padding:.5em .9em;font:600 .78rem/1 var(--f-body);cursor:pointer;white-space:nowrap}
+.copy.ok{border-color:var(--forest);background:var(--forest);color:#fff}
+.info-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.postcard{position:relative;aspect-ratio:4/5;max-height:640px;justify-self:center;width:100%}
+.postcard .shape{position:absolute;inset:0;overflow:hidden;border-radius:52% 48% 44% 56%/49% 44% 56% 51%;animation:blob 18s ease-in-out infinite alternate}
+.postcard img{width:100%;height:100%;object-fit:cover}
+.postcard .pin{position:absolute;left:8%;bottom:9%;z-index:1;background:var(--paper);border-radius:18px;padding:16px 18px;display:grid;gap:6px;box-shadow:0 20px 50px -20px rgba(13,20,26,.45);max-width:76%}
+.postcard .pin strong{font:600 1.05rem/1.2 var(--f-display)}
+@media (max-width:380px){.row .v{font-size:.98rem}}
+@media (max-width:820px){
+  .info-grid{grid-template-columns:1fr}
+  .row{grid-template-columns:minmax(0,1fr) auto;row-gap:6px}
+  .row .lbl{grid-column:1 / -1}
+}
+
+/* ---------- 09 · jeu ---------- */
+.game-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.game-slot{border-radius:26px;overflow:hidden;background:#0B1510;min-height:220px;position:relative;box-shadow:0 0 0 1px var(--line-night)}
+.game-wait{position:absolute;inset:0;display:grid;place-items:center;color:var(--on-night-2)}
+
+/* ---------- pied de page ---------- */
+.foot{padding-block:clamp(72px,9vw,120px) calc(28px + env(safe-area-inset-bottom,0px))}
+.foot-logo{width:min(760px,92%);height:auto;margin-bottom:clamp(48px,7vw,88px)}
+.foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-top:28px;border-top:1px solid var(--line-night)}
+.foot-grid h4{margin:0 0 14px}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot-grid a{text-decoration:none;opacity:.82}
+.foot-grid a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;color:var(--on-night-2);font-size:.85rem}
+@media (max-width:820px){.foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- curseur (souris seulement) ---------- */
+.cur{position:fixed;left:0;top:0;z-index:90;pointer-events:none;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1.5px solid #fff;mix-blend-mode:difference;
+  display:grid;place-items:center;transition:width .4s var(--ease-out),height .4s var(--ease-out),margin .4s var(--ease-out),opacity .3s,background-color .3s;opacity:0}
+.cur.on{opacity:1}
+.cur.link{width:58px;height:58px;margin:-29px 0 0 -29px;background:#fff}
+.cur.drag{width:84px;height:84px;margin:-42px 0 0 -42px}
+.cur span{font:700 .6rem/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .3s}
+.cur.drag span{opacity:1}
+.gal,.rev-row{cursor:grab}
+.gal.grabbing,.rev-row.grabbing{cursor:grabbing;scroll-snap-type:none}
+.gal.grabbing img{pointer-events:none}
+/* ---------- apparitions (repli sans animations liées au défilement) ---------- */
+.js .io-rise{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.js .io-rise.in{opacity:1;transform:none}
+@supports (animation-timeline:view()){.js .io-rise{opacity:1;transform:none;transition:none}}
+.scr{white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div id="pre" aria-hidden="true">
+  <div class="pre-in">
+    <img class="pre-logo" src="media/logo-blanc-v1.png" alt="" width="600" height="213">
+    <div class="pre-count" id="preCount">000</div>
+    <div class="pre-bar"><i id="preBar"></i></div>
+  </div>
+  <div class="pre-meta">
+    <p class="lbl lbl-soft">Colmar · Alsace · 48.0794° N</p>
+    <button class="pre-skip lbl" id="preSkip" type="button" data-i18n="pre.skip">Toucher pour entrer</button>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#hero" aria-label="Dream For You, accueil">
+    <img class="on-night" src="media/logo-blanc-v1.png" alt="" width="600" height="213">
+    <img class="on-day" src="media/logo-encre-v1.png" alt="" width="600" height="213">
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#experiences" data-i18n="nav.exp" data-scramble>Expériences</a>
+    <a href="#deroule" data-i18n="nav.how" data-scramble>Déroulé</a>
+    <a href="#avis" data-i18n="nav.rev" data-scramble>Avis</a>
+    <a href="#infos" data-i18n="nav.info" data-scramble>Infos</a>
+    <a href="#jeu" data-i18n="nav.game" data-scramble>Le jeu</a>
+  </nav>
+  <div class="nav-tools">
+    <div class="langs" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true"><span>FR</span></button>
+      <button type="button" data-lang="de" aria-pressed="false"><span>DE</span></button>
+      <button type="button" data-lang="en" aria-pressed="false"><span>EN</span></button>
+      <button type="button" data-lang="es" aria-pressed="false"><span>ES</span></button>
+    </div>
+    <button class="pause" type="button" id="pauseBtn" aria-pressed="false" data-i18n-attr="aria-label:ui.pause" aria-label="Mettre les animations en pause">
+      <svg class="i-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="2.6" height="10" fill="currentColor"/><rect x="7.4" y="1" width="2.6" height="10" fill="currentColor"/></svg>
+      <svg class="i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.2v9.6L10.4 6z" fill="currentColor"/></svg>
+    </button>
+    <a class="btn btn-red btn-sm" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="cta.book">Réserver</a>
+    <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="sheet" data-i18n="nav.menu">Menu</button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Menu">
+    <a href="#experiences"><span>01</span><b data-i18n="nav.exp">Expériences</b></a>
+    <a href="#deroule"><span>02</span><b data-i18n="nav.how">Déroulé</b></a>
+    <a href="#avis"><span>03</span><b data-i18n="nav.rev">Avis</b></a>
+    <a href="#reserver"><span>04</span><b data-i18n="cta.book">Réserver</b></a>
+    <a href="#infos"><span>05</span><b data-i18n="nav.info">Infos</b></a>
+    <a href="#jeu"><span>06</span><b data-i18n="nav.game">Le jeu</b></a>
+  </nav>
+  <div class="sheet-foot">
+    <div class="langs" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true"><span>FR</span></button>
+      <button type="button" data-lang="de" aria-pressed="false"><span>DE</span></button>
+      <button type="button" data-lang="en" aria-pressed="false"><span>EN</span></button>
+      <button type="button" data-lang="es" aria-pressed="false"><span>ES</span></button>
+    </div>
+    <p class="lbl lbl-soft">191 route d'Ingersheim · 68000 Colmar · <span data-i18n="info.hoursv">Tous les jours, 9h – 19h</span></p>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ==========================================================================================
+     01 · HÉROS V3 — LA BALADE PUIS LE VOL.
+     Un film piloté par le défilement (src/flight.v3c.js) : quad dans les vignes, hélicoptère, cabine, Haut-Kœnigsbourg.
+     Sa dernière image est la première de la vidéo de la bulle : l'écran se referme en bulle et le hero
+     de la v1 (titre h1, deux boutons) apparaît. Film : media/vol-v3b/ (paquets vidéo v-*.mp4 et images de repli l-*/p-*.webp).
+     ========================================================================================== -->
+<section id="hero" class="hero night" data-theme="night" data-hero="v2-vol">
+  <div class="fl-pin">
+    <div class="stage" id="hero-stage" data-stage="hero">
+      <div class="stage-gl"></div>
+      <div class="stage-fb"><div class="blob"><video id="heroVideo" muted playsinline loop preload="auto" poster="media/chateau-poster-v2.jpg"
+        data-src-l="media/chateau-1920-v2.mp4" data-src-s="media/chateau-720-v1.mp4"></video></div></div>
+    </div>
+    <canvas id="flFilm" aria-hidden="true"></canvas>
+    <div class="fl-veil" aria-hidden="true"></div>
+    <div class="fl-hud wrap">
+      <p class="lbl fade"><span data-scramble data-i18n="hero.tl">Colmar · Alsace · France</span></p>
+      <p class="lbl fade tnum"><span id="flCoords">48.0794° N — 7.3585° E</span></p>
+    </div>
+    <div class="hero-ui wrap">
+      <div class="hero-main">
+        <h1 class="hero-title" data-i18n="hero.title" data-split>Évasion</h1>
+        <div class="hero-row">
+          <p class="hero-sub fade d2" data-i18n="hero.sub">Vivez l'aventure et la détente au cœur de l'Alsace authentique.</p>
+          <div class="hero-cta fade d3">
+            <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener"><span data-i18n="cta.book">Réserver</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <a class="btn btn-ghost" href="#experiences" data-i18n="cta.see">Voir les expériences</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-foot fade d3">
+        <p class="lbl lbl-soft" data-i18n="hero.caption">Haut-Kœnigsbourg, vu du ciel</p>
+        <p class="lbl lbl-soft hide-s" data-i18n="hero.hours">Ouvert tous les jours · 9h – 19h</p>
+        <p class="lbl scroll-cue"><i></i><span data-i18n="hero.scroll">Défiler</span></p>
+      </div>
+    </div>
+    <div class="fl-route wrap">
+      <span class="lbl" data-i18n="fl.from">Colmar</span>
+      <span class="fl-line" aria-hidden="true"><i id="flBar"></i></span>
+      <span class="lbl" data-i18n="fl.to">Haut-Kœnigsbourg</span>
+      <span class="lbl tnum" id="flKm">18,9 km</span>
+      <button class="fl-skip" type="button" id="flSkip" data-i18n="fl.skip">Passer le film</button>
+    </div>
+  </div>
+
+  <div class="fl-track">
+    <div class="fl-intro wrap">
+      <p class="fl-word fl-w1" data-i18n="fl.w1" data-split>Rêvez</p>
+      <p class="fl-word fl-w2" data-i18n="fl.w2" data-split>plus haut</p>
+      <div class="fl-intro-row">
+        <p class="hero-sub fade d2" data-i18n="fl.sub">Une balade en quad dans les vignes, puis l'envol jusqu'au Haut-Kœnigsbourg. Et toute l'Alsace à vivre.</p>
+        <div class="fl-actions fade d3">
+          <button class="btn btn-light" type="button" id="flGo">
+            <svg class="i-go" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.2v9.6L10.4 6z" fill="currentColor"/></svg>
+            <svg class="i-stop" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="2.6" height="10" fill="currentColor"/><rect x="7.4" y="1" width="2.6" height="10" fill="currentColor"/></svg>
+            <span data-i18n="fl.go">Démarrer</span></button>
+          <p class="lbl scroll-cue"><i></i><span data-i18n="fl.cue">ou défilez</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="fl-cap" style="--at:.085"><div class="wrap">
+      <p class="lbl fl-cap-k" data-i18n="fl.k0">En quad</p>
+      <p class="fl-cap-t" data-i18n="fl.c0">Les chemins de vigne, dans la lumière du matin.</p>
+    </div></div>
+    <div class="fl-cap r" style="--at:.47"><div class="wrap">
+      <p class="lbl fl-cap-k" data-i18n="fl.k1">À bord</p>
+      <p class="fl-cap-t" data-i18n="fl.c1">La verrière s'ouvre sur les Vosges.</p>
+    </div></div>
+    <div class="fl-cap" style="--at:.6"><div class="wrap">
+      <p class="lbl fl-cap-k" data-i18n="fl.k2">Route des vins</p>
+      <p class="fl-cap-t" data-i18n="fl.c2">Les vignes d'or, les villages à colombages.</p>
+    </div></div>
+    <div class="fl-cap r" style="--at:.748"><div class="wrap">
+      <p class="lbl fl-cap-k" data-i18n="fl.k3">Altitude 757 m</p>
+      <p class="fl-cap-t" data-i18n="fl.c3">Tout en haut, le Haut-Kœnigsbourg.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- 02 · manifeste -->
+<section id="manifeste" class="lift day sec-pad" data-theme="day">
+  <div class="wrap manif">
+    <p class="lbl kicker" data-i18n="man.kicker" data-scramble>Découvrez Colmar autrement</p>
+    <p class="manif-text" id="manifText" data-i18n="man.text">Bienvenue au cœur de l'Alsace, entre villages authentiques, vignobles d'exception et paysages à couper le souffle. Des ruelles colorées de Colmar jusqu'aux sommets des Vosges.</p>
+    <div class="manif-sub">
+      <p class="lead muted io-rise" data-i18n="man.p1">Vivez des expériences uniques qui mêlent aventure, gastronomie et découvertes locales. Dream For You crée des moments inspirants pour réaliser vos rêves, avec des services personnalisés et une vision créative moderne.</p>
+      <p class="muted io-rise" data-i18n="man.p2">Offrir un cadeau original, organiser une surprise ou simplement vivre quelque chose de différent : nos activités s'adaptent à toutes les occasions.</p>
+    </div>
+    <div class="stats" role="list">
+      <div class="stat" role="listitem"><b class="tnum" data-count="150">150<em>+</em></b><span class="lbl muted" data-i18n="stat.clients">Clients heureux</span></div>
+      <div class="stat" role="listitem"><b class="tnum">5,0<em>★</em></b><span class="lbl muted" data-i18n="stat.rating">Note Setmore · 5 avis</span></div>
+      <div class="stat" role="listitem"><b class="tnum" data-count="6">6</b><span class="lbl muted" data-i18n="stat.exp">Expériences</span></div>
+      <div class="stat" role="listitem"><b class="tnum">9–19<em>h</em></b><span class="lbl muted" data-i18n="stat.hours">Tous les jours</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · expériences : la bulle reste à gauche, le texte défile au doigt -->
+<section id="experiences" class="lift night" data-theme="night">
+  <div class="wrap exp-head sec-pad" style="padding-bottom:clamp(40px,6vw,80px)">
+    <div>
+      <p class="lbl kicker" data-i18n="exp.kicker" data-scramble>Nos expériences</p>
+      <h2 class="h-xl" data-i18n="exp.title">Six façons de vivre l'Alsace.</h2>
+    </div>
+    <p class="muted" data-i18n="exp.intro">Chaque expérience est pensée pour être unique, immersive et mémorable. Pas de simples prestations : de vrais moments à vivre, préparés dans les moindres détails et réservables en ligne.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-stage">
+      <div class="stage" data-stage="exp">
+        <canvas id="expFilm" aria-hidden="true"></canvas>
+        <div class="exp-veil"></div>
+      </div>
+      <div class="exp-hud">
+        <p class="lbl"><span class="exp-idx tnum" id="hudIdx">01 / 06</span> <span id="hudName" data-scramble>Quad</span></p>
+        <div class="exp-dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+    <div class="exp-list">
+      <article class="exp-item" data-exp="0" data-tex="quad" id="exp-quad">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">01</span><span class="lbl lbl-soft" data-i18n="x.quad.where">Vosges &amp; vignoble</span></div>
+        <h3 data-i18n="x.quad.t">Excursions en quad</h3>
+        <p class="txt" data-i18n="x.quad.d">Partez à l'aventure sur les chemins des Vosges et découvrez une Alsace sauvage et naturelle, sur des circuits accessibles à tous. Entre forêts, montagnes et panoramas, la balade mêle adrénaline et découverte.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.quad.o1">Balade 2 h · 1 ou 2 personnes</dt><dd>100 €</dd></div>
+          <div><dt data-i18n="x.quad.o2">Balade 4 h · 1 ou 2 personnes</dt><dd>180 €</dd></div>
+        </dl>
+        <p class="offer-note" data-i18n="x.quad.n">Casque, gants et charlotte fournis.</p>
+        <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="x.quad.cta">Réserver le quad</a>
+      </article>
+
+      <article class="exp-item" data-exp="1" data-tex="helico" id="exp-helico">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">02</span><span class="lbl lbl-soft" data-i18n="x.heli.where">Au-dessus de Colmar</span></div>
+        <h3 data-i18n="x.heli.t">Prenez de la hauteur en hélicoptère</h3>
+        <p class="txt" data-i18n="x.heli.d">Une vue spectaculaire sur les vignobles, les villages médiévaux et les grands châteaux de la région. Depuis le ciel, Kaysersberg, Ribeauvillé ou le Haut-Kœnigsbourg se découvrent autrement.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.heli.o1">Vol de 40 minutes</dt><dd>200 €</dd></div>
+        </dl>
+        <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="x.heli.cta">Réserver le vol</a>
+      </article>
+
+      <article class="exp-item" data-exp="2" data-tex="cheval" id="exp-cheval">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">03</span><span class="lbl lbl-soft" data-i18n="x.horse.where">Vignes &amp; forêts</span></div>
+        <h3 data-i18n="x.horse.t">Balade à cheval au cœur de l'Alsace</h3>
+        <p class="txt" data-i18n="x.horse.d">Accessible aux débutants comme aux cavaliers confirmés. Forêts, prairies, chemins de campagne et vignobles, au rythme du cheval, accompagné par des professionnels passionnés.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.horse.o1">Promenade 2 h</dt><dd>45 €</dd></div>
+        </dl>
+        <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="x.horse.cta">Réserver la balade</a>
+      </article>
+
+      <article class="exp-item" data-exp="3" data-tex="spa" id="exp-spa">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">04</span><span class="lbl lbl-soft" data-i18n="x.spa.where">Sauna · hammam · balnéo</span></div>
+        <h3 data-i18n="x.spa.t">Détente au spa privatisé</h3>
+        <p class="txt" data-i18n="x.spa.d">Une parenthèse de bien-être dans un cadre apaisant et raffiné. La vapeur chaude du hammam détend les muscles, purifie la peau et chasse le stress, après une journée d'activités ou simplement pour vous ressourcer.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.spa.o1">Privatisation 2 h · 2 personnes</dt><dd>85 €</dd></div>
+          <div><dt data-i18n="x.spa.o2">Privatisation 2 h · 4 personnes</dt><dd>155 €</dd></div>
+          <div><dt data-i18n="x.spa.o3">Spa + massage 1 h 30 · 2 personnes</dt><dd>120 €</dd></div>
+          <div><dt data-i18n="x.spa.o4">Massage en duo 1 h</dt><dd data-i18n="x.spa.p4">80 € / pers.</dd></div>
+        </dl>
+        <p class="offer-note" data-i18n="x.spa.n">Boissons sans alcool offertes avec la privatisation.</p>
+        <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="x.spa.cta">Réserver le spa</a>
+      </article>
+
+      <article class="exp-item" data-exp="4" data-tex="velo" id="exp-velo">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">05</span><span class="lbl lbl-soft" data-i18n="x.bike.where">Colmar &amp; environs</span></div>
+        <h3 data-i18n="x.bike.t">Balade en vélo électrique</h3>
+        <p class="txt" data-i18n="x.bike.d">Explorez Colmar et ses environs en toute liberté, au fil des canaux et des routes du vignoble. Une balade confortable, agréable et accessible à tous.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.bike.o1">Location 4 h</dt><dd>30 €</dd></div>
+        </dl>
+        <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener" data-i18n="x.bike.cta">Réserver un vélo</a>
+      </article>
+
+      <article class="exp-item" data-exp="5" data-tex="degustation" id="exp-degustation">
+        <div class="exp-meta"><span class="lbl exp-idx tnum">06</span><span class="lbl lbl-soft" data-i18n="x.taste.where">Terroir d'Alsace</span></div>
+        <h3 data-i18n="x.taste.t">Dégustation de produits locaux</h3>
+        <p class="txt" data-i18n="x.taste.d">Fromages artisanaux, charcuteries traditionnelles, spécialités régionales, miels, confitures et vins locaux : les saveurs authentiques de l'Alsace, à la rencontre de producteurs passionnés.</p>
+        <dl class="offers">
+          <div><dt data-i18n="x.taste.o1">Formule et tarif</dt><dd data-i18n="x.taste.p1">Sur demande</dd></div>
+        </dl>
+        <a class="btn btn-ghost" href="https://wa.me/33769058671" target="_blank" rel="noopener" data-i18n="x.taste.cta">Demander sur WhatsApp</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · déroulé + engagements -->
+<section id="deroule" class="lift day sec-pad" data-theme="day">
+  <div class="wrap">
+    <p class="lbl kicker" data-i18n="how.kicker" data-scramble>Comment ça se passe ?</p>
+    <h2 class="h-l rise" data-i18n="how.title">Un déroulé clair, du premier message au dernier virage.</h2>
+    <ol class="steps">
+      <li><h3 data-i18n="how.s1">Accueil et prise de contact</h3><p data-i18n="how.s1d">On fait connaissance et on cerne vos envies.</p></li>
+      <li><h3 data-i18n="how.s2">Mise en place selon votre choix</h3><p data-i18n="how.s2d">L'expérience est préparée pour vous.</p></li>
+      <li><h3 data-i18n="how.s3">Une activité encadrée</h3><p data-i18n="how.s3d">Dans un cadre professionnel et sécurisé.</p></li>
+      <li><h3 data-i18n="how.s4">Accompagnement tout du long</h3><p data-i18n="how.s4d">Quelqu'un reste à vos côtés.</p></li>
+      <li><h3 data-i18n="how.s5">Équipement fourni</h3><p data-i18n="how.s5d">Casque, gants et charlotte.</p></li>
+      <li><h3 data-i18n="how.s6">Conclusion et suivi</h3><p data-i18n="how.s6d">Un retour après le moment, si besoin.</p></li>
+    </ol>
+    <div class="pledges">
+      <div>
+        <p class="lbl kicker" data-i18n="pl.kicker" data-scramble>Nos engagements</p>
+        <h2 class="h-m" data-i18n="pl.title">Chaque prestation est personnalisée pour vous ressembler.</h2>
+      </div>
+      <ul class="pledge-list">
+        <li class="io-rise"><span class="lbl tnum">01</span><span data-i18n="pl.1">Une organisation soignée du début à la fin</span></li>
+        <li class="io-rise"><span class="lbl tnum">02</span><span data-i18n="pl.2">Une expérience personnalisée selon vos envies</span></li>
+        <li class="io-rise"><span class="lbl tnum">03</span><span data-i18n="pl.3">Un accompagnement professionnel</span></li>
+        <li class="io-rise"><span class="lbl tnum">04</span><span data-i18n="pl.4">Une grande flexibilité dans les demandes</span></li>
+        <li class="io-rise"><span class="lbl tnum">05</span><span data-i18n="pl.5">Une attention particulière aux détails</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · avis (vrais avis publiés sur la page Setmore) -->
+<section id="avis" class="lift mist sec-pad" data-theme="day">
+  <div class="wrap">
+    <div class="rev-top">
+      <div>
+        <p class="lbl kicker" data-i18n="rev.kicker" data-scramble>Ils l'ont vécu</p>
+        <div class="rating"><b class="tnum">5,0</b><div><div class="stars" aria-hidden="true">★★★★★</div><p class="lbl muted" data-i18n="rev.count">5 avis vérifiés sur Setmore</p></div></div>
+      </div>
+      <div class="rev-nav">
+        <button class="rnd" type="button" data-rev="-1" data-i18n-attr="aria-label:ui.prev" aria-label="Avis précédent"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <button class="rnd" type="button" data-rev="1" data-i18n-attr="aria-label:ui.next" aria-label="Avis suivant"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="padding-right:0;max-width:none;padding-left:max(var(--gut-l), calc((100vw - 1320px) / 2 + 16px))">
+    <div class="rev-row" id="revRow" data-lenis-prevent-horizontal>
+      <figure class="rev"><q lang="fr">Une superbe expérience en quad que je recommande sans hésiter ! Le parcours permet de découvrir Colmar et les magnifiques paysages du vignoble sous un angle différent. Les itinéraires sont variés, avec de très beaux points de vue et des chemins agréables à parcourir. Merci beaucoup !</q>
+        <figcaption class="rev-who"><strong>Schlernitzauer</strong><span class="stars" aria-label="5 sur 5">★★★★★</span></figcaption></figure>
+      <figure class="rev"><q lang="fr">Personnes très sympathiques ! Une superbe balade à travers les vignes, juste magnifique au coucher du soleil. Merci encore pour ce moment !</q>
+        <figcaption class="rev-who"><strong>Stoffelbach</strong><span class="stars" aria-label="5 sur 5">★★★★★</span></figcaption></figure>
+      <figure class="rev long"><q lang="fr">Une expérience absolument incroyable ! Nous avons passé un moment exceptionnel et nous recommandons cette activité à 100 % ! La personne qui nous a accompagnés pendant la balade était tout simplement au top : super gentille, professionnelle, attentionnée et avec une excellente ambiance du début jusqu'à la fin. La balade en quad était magnifique, les paysages superbes et tout était parfaitement organisé. On s'est vraiment régalés et ça vaut largement le coup ! Si vous êtes à Colmar ou dans les environs, n'hésitez surtout pas, vous ne le regretterez pas. Un énorme merci pour ce moment inoubliable, et surtout à notre accompagnatrice qui a rendu cette expérience encore plus spéciale. Nous reviendrons avec grand plaisir !</q>
+        <button class="more" type="button" data-i18n="rev.more">Lire la suite</button>
+        <figcaption class="rev-who"><strong>L_moo</strong><span class="stars" aria-label="5 sur 5">★★★★★</span></figcaption></figure>
+      <figure class="rev"><q lang="fr">Super moment ! Merci à Jeremy pour sa gentillesse. Envie de vous évader au milieu des vignes d'Alsace ? Alors n'hésitez pas !</q>
+        <figcaption class="rev-who"><strong>Sanna Valerie</strong><span class="stars" aria-label="5 sur 5">★★★★★</span></figcaption></figure>
+      <figure class="rev"><q lang="fr">Superbe balade très chill et rafraîchissante avec de beaux paysages, prise en main du quad très rapide, grand merci à l'équipe pour l'accueil et la balade.</q>
+        <figcaption class="rev-who"><strong>Britschu William</strong><span class="stars" aria-label="5 sur 5">★★★★★</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="wrap"><p class="lbl muted" style="margin-top:14px" data-i18n="rev.src">Avis publiés sur la page de réservation Setmore, en version originale.</p></div>
+</section>
+
+<!-- 06 · galerie -->
+<section id="galerie" class="lift night sec-pad" data-theme="night" style="padding-inline:0">
+  <div class="wrap rev-top">
+    <div>
+      <p class="lbl kicker" data-i18n="gal.kicker" data-scramble>Galerie</p>
+      <h2 class="h-l" data-i18n="gal.title">Le charme alsacien.</h2>
+    </div>
+    <p class="lbl muted gal-hint"><span data-i18n="gal.hint">Glisser</span> <svg width="28" height="10" viewBox="0 0 28 10" aria-hidden="true"><path d="M0 5h26M22 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></p>
+  </div>
+  <div class="gal" id="gal" data-lenis-prevent-horizontal>
+    <figure><div class="shape"><img src="media/client-quad-vignes-v1.jpg" alt="Quads sur un chemin entre les vignes" loading="lazy" width="900" height="803"></div><figcaption><span class="lbl" data-i18n="gal.c1">Route des vins</span><span class="lbl lbl-soft">Quad</span></figcaption></figure>
+    <figure><div class="shape"><img src="media/colmar-nuit-720-v1.jpg" alt="Canal bordé de maisons à colombages à l'heure bleue" loading="lazy" width="720" height="893"></div><figcaption><span class="lbl" data-i18n="gal.c2">Colmar, heure bleue</span><span class="lbl lbl-soft">Colmar</span></figcaption></figure>
+    <figure><div class="shape"><img src="media/client-quad-village-v1.jpg" alt="Groupe en quad devant un village alsacien" loading="lazy" width="700" height="1254"></div><figcaption><span class="lbl" data-i18n="gal.c3">Entre les villages</span><span class="lbl lbl-soft">Quad</span></figcaption></figure>
+    <figure><div class="shape"><img src="media/degustation-720-v1.jpg" alt="Table de dégustation : fromages, bretzel, kougelhopf et vin blanc" loading="lazy" width="720" height="893"></div><figcaption><span class="lbl" data-i18n="gal.c4">Saveurs du terroir</span><span class="lbl lbl-soft" data-i18n="gal.t4">Dégustation</span></figcaption></figure>
+    <figure><div class="shape"><img src="media/client-quad-colmar-v1.jpg" alt="Quads garés au bord d'un canal de Colmar, vus du ciel" loading="lazy" width="700" height="1254"></div><figcaption><span class="lbl" data-i18n="gal.c5">La Petite Venise</span><span class="lbl lbl-soft">Colmar</span></figcaption></figure>
+    <figure><div class="shape"><img src="media/cheval-720-v1.jpg" alt="Deux cavaliers entre les vignes au coucher du soleil" loading="lazy" width="720" height="893"></div><figcaption><span class="lbl" data-i18n="gal.c6">Au pas, entre les rangs</span><span class="lbl lbl-soft" data-i18n="gal.t6">Cheval</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- 07 · réservation : la bulle s'agrandit, plein écran -->
+<section id="reserver" class="book night" data-theme="night">
+  <div class="stage" data-stage="book">
+    <div class="stage-gl"></div>
+    <div class="stage-fb"><div class="blob"><video id="bookVideo" muted playsinline loop preload="none" poster="media/colmar-poster-v1.jpg"
+      data-src-l="media/colmar-1280-v1.mp4" data-src-s="media/colmar-720-v1.mp4"></video></div></div>
+  </div>
+  <div class="wrap book-in">
+    <p class="lbl kicker" style="justify-content:center" data-i18n="book.kicker" data-scramble>Réservation</p>
+    <h2 class="h-xl" data-i18n="book.title">Réservez votre expérience.</h2>
+    <p class="lead" data-i18n="book.lead">Choix du créneau et paiement sécurisé sur Setmore. Notre équipe vous confirme ensuite chaque détail.</p>
+    <ol class="book-steps">
+      <li><b>01</b><span data-i18n="book.s1">L'activité</span></li>
+      <li><b>02</b><span data-i18n="book.s2">La date</span></li>
+      <li><b>03</b><span data-i18n="book.s3">Vos coordonnées</span></li>
+      <li><b>04</b><span data-i18n="book.s4">Validation</span></li>
+      <li><b>05</b><span data-i18n="book.s5">Confirmation de l'équipe</span></li>
+    </ol>
+    <div class="book-cta">
+      <a class="btn btn-red" href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener"><span data-i18n="book.cta">Réserver sur Setmore</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a class="btn btn-ghost" href="https://wa.me/33769058671" target="_blank" rel="noopener" data-i18n="book.wa">Une question ? WhatsApp</a>
+    </div>
+    <p class="book-note" data-i18n="book.note">Chaque expérience peut être adaptée : précisez vos demandes particulières lors de la réservation.</p>
+  </div>
+</section>
+
+<!-- 08 · infos pratiques -->
+<section id="infos" class="lift day sec-pad" data-theme="day">
+  <div class="wrap info-grid">
+    <div>
+      <p class="lbl kicker" data-i18n="info.kicker" data-scramble>Où sommes-nous ?</p>
+      <h2 class="h-l" data-i18n="info.title">Au cœur de Colmar, entre nature et douceur de vivre.</h2>
+      <div class="card-list" style="margin-top:36px">
+        <div class="row"><span class="lbl muted" data-i18n="info.addr">Adresse</span><span class="v" id="vAddr">191 route d'Ingersheim, 68000 Colmar</span><button class="copy" type="button" data-copy="vAddr" data-i18n="ui.copy">Copier</button></div>
+        <div class="row"><span class="lbl muted" data-i18n="info.hours">Horaires</span><span class="v" data-i18n="info.hoursv">Tous les jours, 9h – 19h</span><span></span></div>
+        <div class="row"><span class="lbl muted" data-i18n="info.phone">Tél. · WhatsApp</span><span class="v tnum" id="vTel">+33 7 69 05 86 71</span><button class="copy" type="button" data-copy="vTel" data-i18n="ui.copy">Copier</button></div>
+        <div class="row"><span class="lbl muted" data-i18n="info.mail">E-mail</span><span class="v" id="vMail">dreamforyoucolmar@gmail.com</span><button class="copy" type="button" data-copy="vMail" data-i18n="ui.copy">Copier</button></div>
+      </div>
+      <div class="info-actions">
+        <a class="btn btn-ink" href="https://www.google.com/maps/search/?api=1&amp;query=Dream+For+You%2C+191+route+d%27Ingersheim%2C+68000+Colmar" target="_blank" rel="noopener" data-i18n="info.route">Itinéraire</a>
+        <a class="btn btn-ghost" href="https://wa.me/33769058671" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/dreamforyou.colmar/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-ghost" href="https://www.snapchat.com/@dreamforyou68" target="_blank" rel="noopener">Snapchat</a>
+      </div>
+    </div>
+    <div class="postcard">
+      <div class="shape"><img src="media/colmar-poster-v1.jpg" alt="Colmar vu du ciel" loading="lazy" width="1280" height="720"></div>
+      <div class="pin"><span class="lbl" style="color:var(--red)" data-i18n="hero.tl">Colmar · Alsace · France</span><strong>Dream For You</strong><span class="muted" style="font-size:.9rem">191 route d'Ingersheim · Colmar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · le jeu -->
+<section id="jeu" class="lift night sec-pad" data-theme="night">
+  <div class="wrap">
+    <div class="game-head">
+      <div>
+        <p class="lbl kicker" data-i18n="game.kicker" data-scramble>Le jeu · pause détente</p>
+        <h2 class="h-l" data-i18n="game.title">Dream Rider, la route des vignes.</h2>
+      </div>
+      <p class="muted" style="max-width:42ch;margin:0" data-i18n="game.intro">Un quad, trois voies, des grappes à ramasser et des tonneaux à éviter. Au doigt sur téléphone, au clavier sur ordinateur.</p>
+    </div>
+    <div class="game-slot" id="gameSlot"><div class="game-wait lbl" data-i18n="game.loading">Chargement du jeu…</div></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot forest lift" data-theme="night">
+  <div class="wrap">
+    <img class="foot-logo" src="media/logo-blanc-v1.png" alt="Dream For You" width="600" height="213" loading="lazy">
+    <div class="foot-grid">
+      <div><h4 class="lbl lbl-soft" data-i18n="ft.exp">Expériences</h4>
+        <ul><li><a href="#exp-quad" data-i18n="ft.l1">Quad</a></li><li><a href="#exp-helico" data-i18n="ft.l2">Hélicoptère</a></li><li><a href="#exp-cheval" data-i18n="ft.l3">Cheval</a></li><li><a href="#exp-spa" data-i18n="ft.l4">Spa &amp; hammam</a></li><li><a href="#exp-velo" data-i18n="ft.l5">Vélo électrique</a></li><li><a href="#exp-degustation" data-i18n="ft.l6">Dégustation</a></li></ul></div>
+      <div><h4 class="lbl lbl-soft" data-i18n="ft.book">Réserver</h4>
+        <ul><li><a href="https://dreamforyou.setmore.com/" target="_blank" rel="noopener">Setmore</a></li><li><a href="https://wa.me/33769058671" target="_blank" rel="noopener">WhatsApp</a></li><li><span class="tnum">+33 7 69 05 86 71</span></li></ul></div>
+      <div><h4 class="lbl lbl-soft" data-i18n="ft.find">Nous trouver</h4>
+        <ul><li>191 route d'Ingersheim</li><li>68000 Colmar</li><li data-i18n="info.hoursv">Tous les jours, 9h – 19h</li></ul></div>
+      <div><h4 class="lbl lbl-soft" data-i18n="ft.follow">Suivre</h4>
+        <ul><li><a href="https://www.instagram.com/dreamforyou.colmar/" target="_blank" rel="noopener">Instagram · @dreamforyou.colmar</a></li><li><a href="https://www.snapchat.com/@dreamforyou68" target="_blank" rel="noopener">Snapchat · @dreamforyou68</a></li><li><a href="#jeu" data-i18n="nav.game">Le jeu</a></li></ul></div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Dream For You · Colmar, Alsace</span>
+      <div class="langs" role="group" aria-label="Langue" style="color:var(--on-night)">
+        <button type="button" data-lang="fr" aria-pressed="true"><span>FR</span></button>
+        <button type="button" data-lang="de" aria-pressed="false"><span>DE</span></button>
+        <button type="button" data-lang="en" aria-pressed="false"><span>EN</span></button>
+        <button type="button" data-lang="es" aria-pressed="false"><span>ES</span></button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>document.documentElement.classList.add('js');
+/* ?lang=de|en|es : lien direct vers une langue (anciennes adresses /de /en /es du site Hostinger) */
+try{var dfyL=new URLSearchParams(location.search).get('lang');if(/^(fr|de|en|es)$/.test(dfyL))localStorage.setItem('dfy-lang',dfyL);}catch(e){}</script>
+<script src="vendor/lenis.min.js"></script>
+<script src="src/i18n.v3a.js"></script>
+<script src="src/bubble.v2.js"></script>
+<script src="src/flight.v3e.js"></script>
+<script src="src/scenes.v3e.js"></script>
+<script src="src/site.v3e.js"></script>
+</body>
+</html>

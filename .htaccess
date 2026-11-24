@@ -1,0 +1,45 @@
+# dreamforyou.fr (Hostinger). HTTPS forcé par hPanel (pas ici : derrière le CDN, %{HTTPS} peut mentir et boucler).
+Options -Indexes
+DirectoryIndex index.html
+
+# Déploiement GitHub -> Hostinger : le dossier .git est dans public_html, ne jamais le servir
+RedirectMatch 404 /\.git
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Anciennes adresses du site Hostinger (créateur de sites) vers la bonne section de la page unique
+RewriteRule ^(de|en|es)/?$ /?lang=$1 [R=301,L]
+RewriteRule ^(de|en|es)/[^/]*galer[^/]*/?$ /?lang=$1#galerie [R=301,NE,L]
+RewriteRule ^(de|en|es)/[^/]*(activ|aktiv)[^/]*/?$ /?lang=$1#experiences [R=301,NE,L]
+RewriteRule ^(de|en|es)/[^/]*reserv[^/]*/?$ /?lang=$1#reserver [R=301,NE,L]
+RewriteRule ^galerie/?$ /#galerie [R=301,NE,L]
+RewriteRule ^activites/?$ /#experiences [R=301,NE,L]
+RewriteRule ^(reservations|rservez-votre-aventure(-[0-9]+)?)/?$ /#reserver [R=301,NE,L]
+</IfModule>
+
+AddType video/mp4 .mp4
+AddType image/webp .webp
+AddType application/json .json
+AddType text/javascript .js .mjs
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 7 days"
+ExpiresByType text/html "access plus 0 seconds"
+ExpiresByType video/mp4 "access plus 30 days"
+ExpiresByType image/webp "access plus 30 days"
+ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType image/png "access plus 30 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
